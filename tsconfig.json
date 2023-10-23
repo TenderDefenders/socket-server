@@ -1,11 +1,16 @@
 {
     "compilerOptions": {
-        "target": "es2016",
-        "module": "commonjs",
+        "target": "ES2022",
+        "module": "CommonJS",
+        "moduleResolution": "Node",
         "outDir": "./dist",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "strict": true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "baseUrl": "./",
+        "paths": {
+            "tender-core/*": ["node_modules/tender-core/src/*"]
+          }
     }
 }
