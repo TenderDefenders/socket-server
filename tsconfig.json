@@ -10,7 +10,9 @@
         "skipLibCheck": true,
         "baseUrl": "./",
         "paths": {
-            "tender-core/*": ["node_modules/tender-core/src/*"]
-          }
+            "tender-core/*": [
+                "node_modules/tender-core/src/*"
+            ]
+        }
     }
 }

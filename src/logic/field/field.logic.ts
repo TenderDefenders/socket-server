@@ -1,4 +1,5 @@
-import Tickable from "src/interfaces/tickable.interface";
+import Tickable from "../../interfaces/tickable.interface";
+import Grid from "../grid/grid.logic";
 import Player from "../players/player.logic";
 import { UUID, randomUUID } from "node:crypto";
 import { Server } from "socket.io";
@@ -8,9 +9,7 @@ import { Server } from "socket.io";
  */
 export default class Field implements Tickable {
 
-    // TODO: GRID
-    // TODO: ARRAY OF TOWERS
-    // TODO: ARRAY OF ENEMIES
+    // TODO: AN ENTITY MANAGER
 
     /**
      * The socket io server instance.
@@ -26,7 +25,12 @@ export default class Field implements Tickable {
      * The player instance.
      */
     player: Player;
-    
+
+    /**
+     * The field grid.
+     */
+    grid: Grid;
+
     /**
      * The field constructor.
      * 
@@ -37,6 +41,7 @@ export default class Field implements Tickable {
         this.io = io;
         this.uuid = randomUUID();
         this.player = player;
+        this.grid = new Grid(10, 10);
     }
 
     /**
@@ -44,5 +49,6 @@ export default class Field implements Tickable {
      */
     tick(): void {
         console.log('Field Ticked');
+        this.io.emit('update', 'Hello player', this.player.uuid);
     }
 }

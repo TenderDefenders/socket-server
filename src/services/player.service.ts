@@ -1,6 +1,6 @@
 import { UUID } from "node:crypto";
-import Tickable from "src/interfaces/tickable.interface";
-import Player from "src/logic/players/player.logic";
+import Tickable from "../interfaces/tickable.interface";
+import Player from "../logic/players/player.logic";
 
 /**
  * The player service class manages all active player sessions.
@@ -21,6 +21,7 @@ export default class PlayerService implements Tickable {
          */
         this.players = new Map();
     }
+
     /**
      * Create a new player instance.
      */
@@ -29,6 +30,7 @@ export default class PlayerService implements Tickable {
         this.players.set(player.uuid, player);
         return player;
     }
+
     /**
      * Tick all player instances.
      */

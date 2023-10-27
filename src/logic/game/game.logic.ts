@@ -1,4 +1,4 @@
-import Tickable from "src/interfaces/tickable.interface";
+import Tickable from "../../interfaces/tickable.interface";
 import Field from "../field/field.logic";
 import Player from "../players/player.logic";
 import { UUID, randomUUID } from "node:crypto";

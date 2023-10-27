@@ -1,8 +1,8 @@
 import { UUID } from "node:crypto";
 import { Server } from "socket.io";
-import Tickable from "src/interfaces/tickable.interface";
-import Game from "src/logic/game/game.logic";
-import Player from "src/logic/players/player.logic";
+import Tickable from "../interfaces/tickable.interface";
+import Game from "../logic/game/game.logic";
+import Player from "../logic/players/player.logic";
 
 /**
  * The game service class manages all active game sessions.
@@ -35,6 +35,7 @@ export default class GameService implements Tickable {
     createGame(player: Player): Game {
         let game: Game = new Game(this.io, player);
         this.games.set(game.uuid, game);
+        player.gameUuid = game.uuid;
         return game;
     }
 
@@ -45,5 +46,7 @@ export default class GameService implements Tickable {
         this.games.forEach((game: Game) => {
             game.tick();
         });
+
+        console.log('Active Games', this.games.size);
     }
 }
