@@ -4,6 +4,7 @@ import GameService from './services/game.service';
 import Player from './logic/players/player.logic';
 import Game from './logic/game/game.logic';
 import GameUpdate from 'tender-core/interfaces/sockets/game-update.interface'
+import GameCreate from 'tender-core/interfaces/sockets/game-create.interface'
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
@@ -31,7 +32,16 @@ io.on('connection', (socket) => {
     console.log('Player created', player.uuid);
     let game: Game = gameService.createGame(player);
     console.log('Game created', game.uuid);
-    socket.emit('created', game.uuid);
+
+    let gameCreate: GameCreate = {
+      gameUuid: game.uuid,
+      grid: {
+        rows: 10,
+        cols: 10
+      }
+    }
+
+    socket.emit('created', gameCreate);
   });
 
   socket.on('update', (update: GameUpdate) => {
